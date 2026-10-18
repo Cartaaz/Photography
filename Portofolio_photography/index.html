@@ -36,7 +36,7 @@
                 <img src="car/DSCN3119.jpg" alt="Foto Mobil 2">
             </div>
             
-            <div class="gallery-item" data-category="kendaraan">
+            <div class="gallery-item" data-category="kendaraan best">
                 <img src="car/DSCN3136.jpg" alt="Foto Mobil 3">
             </div>
 
@@ -48,7 +48,7 @@
                 <img src="car/DSCN3267.jpg" alt="Foto Mobil 5">
             </div>
 
-            <div class="gallery-item" data-category="kendaraan">
+            <div class="gallery-item" data-category="kendaraan best">
                 <img src="car/DSCN3345.jpg" alt="Foto Mobil 6">
             </div>
 
@@ -72,7 +72,7 @@
                 <img src="car/DSCN3542.jpg" alt="Foto Mobil 11">
             </div>
 
-            <div class="gallery-item" data-category="kendaraan">
+            <div class="gallery-item" data-category="kendaraan best">
                 <img src="car/TheBestphoto1.jpg" alt="Foto Mobil 12">
             </div>
 
@@ -93,11 +93,11 @@
                 <img src="nature/DSCN3569.jpg" alt="Foto Pemandangan 4">
             </div>
 
-            <div class="gallery-item" data-category="pemandangan">
+            <div class="gallery-item" data-category="pemandangan best">
                 <img src="nature/DSCN3581.jpg" alt="Foto Pemandangan 5">
             </div>
 
-            <div class="gallery-item" data-category="pemandangan">
+            <div class="gallery-item" data-category="pemandangan best">
                 <img src="nature/DSCN3587.jpg" alt="Foto Pemandangan 6">
             </div>
 
@@ -105,54 +105,22 @@
                 <img src="nature/DSCN3589.jpg" alt="Foto Pemandangan 7">
             </div>
 
-            <div class="gallery-item" data-category="pemandangan">
-                <img src="nature/DSCN3589.jpg" alt="Foto Pemandangan 8">
+            <div class="gallery-item" data-category="pemandangan best">
+                <img src="nature/DSCN3595.jpg" alt="Foto Pemandangan 8">
             </div>
 
             <div class="gallery-item" data-category="pemandangan">
-                <img src="nature/DSCN3595.jpg" alt="Foto Pemandangan 9">
+                <img src="nature/DSCN3601.jpg" alt="Foto Pemandangan 9">
             </div>
 
             <div class="gallery-item" data-category="pemandangan">
-                <img src="nature/DSCN3601.jpg" alt="Foto Pemandangan 10">
+                <img src="nature/DSCN3603.jpg" alt="Foto Pemandangan 10">
             </div>
 
-            <div class="gallery-item" data-category="pemandangan">
-                <img src="nature/DSCN3603.jpg" alt="Foto Pemandangan 11">
+            <div class="gallery-item" data-category="pemandangan best">
+                <img src="nature/DSCN3610.jpg" alt="Foto Pemandangan 11">
             </div>
 
-            <div class="gallery-item" data-category="pemandangan">
-                <img src="nature/DSCN3610.jpg" alt="Foto Pemandangan 12">
-            </div>
-
-            <!-- FOTO best -->
-            <div class="gallery-item" data-category="best">
-                <img src="car/TheBestphoto1.jpg" alt="best1">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="car/DSCN3345.jpg" alt="best2">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="car/DSCN3136.jpg" alt="best3">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="nature/DSCN3581.jpg" alt="best4">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="nature/DSCN3587.jpg" alt="best5">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="nature/DSCN3610.jpg" alt="best6">
-            </div>
-
-            <div class="gallery-item" data-category="best">
-                <img src="nature/DSCN3595.jpg" alt="best7">
-            </div>
         </div>
     </main>
 
@@ -163,78 +131,68 @@
     </div>
 
     <!-- JAVASCRIPT MURNI (Vanilla JS) -->
-    <script>
+<script>
     // === LOGIKA FILTER GALERI ===
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // 1. Ubah class active pada tombol
+            // 1. Ubah warna tombol yang aktif
             filterButtons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
 
-            // 2. Ambil nilai kategori dan paksa jadi huruf kecil anti-error
+            // 2. Ambil nilai kategori dari tombol yang diklik
             const filterValue = button.getAttribute('data-filter').toLowerCase();
 
-            // 3. Loop ke semua foto dan sembunyikan/tampilkan
+            // 3. Cocokkan dengan label foto (Menggunakan classList.contains atau string .includes)
             galleryItems.forEach(item => {
-                // Ambil kategori dari foto dan paksa jadi huruf kecil juga
+                // Ambil label dari item (misal: "kendaraan best")
                 const itemCategory = item.getAttribute('data-category').toLowerCase();
                 
-                // Jika tombol 'semua' ditekan ATAU kategori foto cocok dengan tombol
-                if (filterValue === 'semua' || filterValue === itemCategory) {
-                    item.style.display = 'inline-block'; // TAMPILKAN
+                // PENTING: Gunakan .includes() agar bisa menemukan kata 'best' di antara kata lain
+                if (filterValue === 'semua' || itemCategory.includes(filterValue)) {
+                    item.style.display = 'inline-block'; 
                 } else {
-                    item.style.display = 'none'; // SEMBUNYIKAN
+                    item.style.display = 'none'; 
                 }
             });
         });
     });
 
-    // === LOGIKA LIGHTBOX (TIDAK ADA YANG DIUBAH, SUDAH AMAN) ===
+    // === LOGIKA LIGHTBOX (TIDAK DIUBAH) ===
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Buka Lightbox saat foto diklik
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
             const imgElement = item.querySelector('img');
-            
-            // Ambil link sumber foto (src)
             let imageSrc = imgElement.src;
-            
             imageSrc = imageSrc.replace('&w=800', '&w=1600'); 
-
             lightboxImg.src = imageSrc;
             lightbox.classList.add('show');
             document.body.style.overflow = 'hidden'; 
         });
     });
 
-    // Fungsi untuk menutup Lightbox
     const closeLightbox = () => {
         lightbox.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Aktifkan scroll kembali
-        
+        document.body.style.overflow = 'auto'; 
         setTimeout(() => {
             lightboxImg.src = '';
         }, 300);
     };
 
-    // Event listener penutup Lightbox
     closeBtn.addEventListener('click', closeLightbox);
     lightboxImg.addEventListener('click', closeLightbox);
     
-    // Tutup jika area luar gambar diklik
     lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
-    // Tutup pakai tombol ESC
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && lightbox.classList.contains('show')) {
             closeLightbox();
