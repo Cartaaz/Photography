@@ -1,0 +1,155 @@
+
+        /* === PENGATURAN DASAR === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+             max-width: 100%; /* Mencegah halaman lebih lebar dari layar */
+             overflow-x: hidden; /* Menyembunyikan elemen yang meluber ke kanan/kiri */
+        }   
+
+        body {
+            background-color: #000000; /* Latar belakang True Black */
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === MENU NAVIGASI STICKY === */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+            padding: 30px 20px 40px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            pointer-events: none; /* Membiarkan klik tembus di area gradien kosong */
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            color: #666666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            pointer-events: auto; /* Mengaktifkan klik hanya pada tombol */
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: #ffffff;
+        }
+
+        /* === GRID MASONRY === */
+        .gallery-container {
+            padding: 0 20px 40px 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .masonry-grid {
+            /* Pengaturan jumlah kolom berdasarkan CSS murni */
+            column-count: 1;
+            column-gap: 20px;
+        }
+
+        /* Responsivitas Grid */
+        @media (min-width: 600px) { .masonry-grid { column-count: 2; } }
+        @media (min-width: 900px) { .masonry-grid { column-count: 3; } }
+        @media (min-width: 1200px) { .masonry-grid { column-count: 4; } }
+
+        /* === ITEM GALERI (FOTO) === */
+        .gallery-item {
+            break-inside: avoid; /* Mencegah foto terpotong di antara kolom */
+            margin-bottom: 20px;
+            cursor: zoom-in;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: opacity 0.4s ease, filter 0.4s ease;
+        }
+
+
+
+        /* === LIGHTBOX (TAMPILAN LAYAR PENUH) === */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000000;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            cursor: zoom-out;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 35px;
+            cursor: pointer;
+            z-index: 1010;
+            line-height: 1;
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .close-btn:hover {
+            opacity: 1;
+        }
+
+        /* Scrollbar kustom (opsional agar cocok dengan tema gelap) */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #333333; }
+        ::-webkit-scrollbar-thumb:hover { background: #555555; }
+        
+        /* Aturan untuk ukuran layar HP (Maksimal lebar 480px) */
+@media screen and (max-width: 480px) {
+    .masonry-grid {
+        column-count: 2; /* <--- UBAH ANGKA INI MENJADI 2 */
+        column-gap: 10px;
+    }
+    
+    .navbar {
+        padding: 15px 5px;
+        gap: 10px;
+    }
+    
+    .filter-btn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
